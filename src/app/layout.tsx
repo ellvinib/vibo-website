@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import { GoogleAnalytics } from "./components/GoogleAnalytics";
 import { CookieConsent } from "./components/CookieConsent";
+import { OrganizationSchema, WebSiteSchema } from "./structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -162,6 +163,10 @@ export default function RootLayout({
       lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <OrganizationSchema />
+        <WebSiteSchema />
+      </head>
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />
         <Header />

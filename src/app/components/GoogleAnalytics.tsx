@@ -1,27 +1,41 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
+const listeners = new Set<() => void>();
+let consentAccepted = false;
+
+function subscribeFn(onStoreChange: () => void) {
+  listeners.add(onStoreChange);
+  consentAccepted = localStorage.getItem("cookie-consent") === "accepted";
+
+  const handleConsent = () => {
+    consentAccepted = true;
+    listeners.forEach((l) => l());
+  };
+  window.addEventListener("cookie-consent-accepted", handleConsent);
+
+  return () => {
+    listeners.delete(onStoreChange);
+    window.removeEventListener("cookie-consent-accepted", handleConsent);
+  };
+}
+
+function getSnapshot() {
+  return consentAccepted;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export function GoogleAnalytics() {
-  const [consentGiven, setConsentGiven] = useState(false);
+  const hasConsent = useSyncExternalStore(subscribeFn, getSnapshot, getServerSnapshot);
 
-  useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
-    if (consent === "accepted") {
-      setConsentGiven(true);
-    }
-
-    const handleConsent = () => {
-      setConsentGiven(true);
-    };
-    window.addEventListener("cookie-consent-accepted", handleConsent);
-    return () => window.removeEventListener("cookie-consent-accepted", handleConsent);
-  }, []);
-
-  if (!GA_MEASUREMENT_ID || !consentGiven) return null;
+  if (!GA_MEASUREMENT_ID || !hasConsent) return null;
 
   return (
     <>
