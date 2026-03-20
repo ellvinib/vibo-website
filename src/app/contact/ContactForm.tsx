@@ -146,6 +146,20 @@ export function ContactForm() {
           placeholder="Vertel ons meer over uw project of vraag..."
         />
       </div>
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="gdpr"
+          name="gdpr"
+          required
+          className="mt-1 h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent"
+        />
+        <label htmlFor="gdpr" className="text-sm text-muted">
+          Ik ga akkoord met de verwerking van mijn persoonsgegevens conform de
+          GDPR. VIBO IT Consulting gebruikt deze gegevens uitsluitend om mijn
+          vraag te beantwoorden. *
+        </label>
+      </div>
       <button
         type="submit"
         disabled={status === "sending"}
