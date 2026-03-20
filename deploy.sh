@@ -14,7 +14,7 @@ echo "Webroot: $FTP_WEBROOT"
 
 lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" -e "
   set ssl:verify-certificate no;
-  mirror --reverse --delete --verbose --parallel=5 out/ $FTP_WEBROOT/;
+  mirror --reverse --verbose --parallel=5 out/ /;
   quit
 "
 

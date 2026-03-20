@@ -1,0 +1,20 @@
+# LiteSpeed Cache purge
+<IfModule LiteSpeed>
+  CacheLookup off
+</IfModule>
+
+# Ensure directory index works
+DirectoryIndex index.html
+
+# Error document
+ErrorDocument 404 /404.html
+
+# Cache headers for static assets
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2|ico|svg|png|jpg|jpeg|gif|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
