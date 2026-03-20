@@ -21,21 +21,26 @@ export function ContactForm() {
       message: formData.get("message") as string,
     };
 
-    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-    const endpoint = formspreeId
-      ? `https://formspree.io/f/${formspreeId}`
-      : "https://formspree.io/f/YOUR_FORM_ID";
-
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("https://formsubmit.co/ajax/vincent@vibo-it.be", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.company,
+          subject: data.subject,
+          message: data.message,
+          _subject: `VIBO Contact: ${data.subject} - ${data.name}`,
+        }),
       });
 
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage("Er is iets misgegaan bij het verzenden.");
+        setErrorMessage("Er is iets misgegaan bij het verzenden. Probeer het opnieuw of mail naar vincent@vibo-it.be.");
         return;
       }
 
@@ -44,7 +49,7 @@ export function ContactForm() {
       (e.target as HTMLFormElement).reset();
     } catch {
       setStatus("error");
-      setErrorMessage("Kan geen verbinding maken met de server.");
+      setErrorMessage("Kan geen verbinding maken met de server. Mail ons direct op vincent@vibo-it.be.");
     }
   }
 
