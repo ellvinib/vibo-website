@@ -14,17 +14,20 @@ Bouw een professionele bedrijfswebsite voor VIBO IT CONSULTING BV die:
 - **CEO:** Vincent Bouillart
 - **Focus:** AI-gedreven IT consultancy voor Belgische KMOs
 - **Brand kleur:** #1e40af (donkerblauw)
-- **Website domein:** viboit.be (te configureren)
+- **Website domein:** vibo-it.be (live), development op aidev.be
+- **LinkedIn:** https://www.linkedin.com/in/vincentbouillart/
+- **Facebook:** https://www.facebook.com/profile.php?id=61580253793249
+- **Instagram:** Nog aan te maken
 
 ## Tech Stack
-- **Framework:** Next.js 15 met App Router
+- **Framework:** Next.js 15 met App Router (static export voor FTP hosting)
 - **Styling:** Tailwind CSS + shadcn/ui
 - **Taal:** TypeScript strict mode
-- **Hosting:** Vercel
+- **Hosting:** FTP server (static site deployment)
 - **CMS:** MDX voor blog posts
-- **Formulieren:** React Hook Form + server actions
-- **Analytics:** Vercel Analytics + Google Analytics 4
-- **Email:** Resend voor contactformulieren
+- **Formulieren:** Formspree of Getform (geen server-side nodig)
+- **Analytics:** Google Analytics 4
+- **Email:** Formspree voor contactformulieren (geen server nodig)
 
 ## Pagina Structuur
 1. **Home** - Hero, diensten overview, social proof, CTA
@@ -43,6 +46,34 @@ Bouw een professionele bedrijfswebsite voor VIBO IT CONSULTING BV die:
 - Internationalisatie via next-intl
 - SEO meta tags op elke pagina
 
-## Deployment
-- Push naar `main` triggert automatische Vercel deploy
-- Preview deployments voor feature branches
+## Deployment (FTP)
+De site wordt als static export gedeployed via FTP.
+
+### Build
+```bash
+npm run build    # Next.js static export -> /out directory
+```
+
+### Deploy naar FTP
+Gebruik de environment variabelen FTP_HOST, FTP_USER, FTP_PASS, FTP_WEBROOT:
+```bash
+lftp -u $FTP_USER,$FTP_PASS $FTP_HOST -e "mirror --reverse --delete --verbose out/ $FTP_WEBROOT/; quit"
+```
+
+### Next.js Config voor Static Export
+In `next.config.ts`:
+```typescript
+const nextConfig = {
+  output: 'export',
+  images: { unoptimized: true },
+  trailingSlash: true,
+};
+```
+
+### BELANGRIJK
+- De site MOET werken als static HTML (geen server-side rendering)
+- Alle formulieren via externe dienst (Formspree/Getform)
+- Afbeeldingen geoptimaliseerd opslaan (geen Next.js Image optimization)
+- Na elke significante wijziging: build + deploy via FTP
+- Test domein: aidev.be
+- Productie domein: vibo-it.be
