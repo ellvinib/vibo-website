@@ -22,17 +22,26 @@ export function ContactForm() {
     };
 
     try {
-      const mailtoBody = `Naam: ${data.name}%0D%0AE-mail: ${data.email}%0D%0ABedrijf: ${data.company}%0D%0AOnderwerp: ${data.subject}%0D%0A%0D%0ABericht:%0D%0A${data.message}`;
-      const mailtoLink = `mailto:vincent@vibo-it.be?subject=${encodeURIComponent(`VIBO Contact: ${data.subject}`)}&body=${mailtoBody}`;
+      const response = await fetch("/api/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-      window.location.href = mailtoLink;
+      const result = await response.json();
+
+      if (!result.success) {
+        setStatus("error");
+        setErrorMessage(result.message || "Er is iets misgegaan. Mail ons direct op vincent@vibo-it.be.");
+        return;
+      }
 
       setStatus("success");
       trackEvent("generate_lead", "contact", data.subject);
       (e.target as HTMLFormElement).reset();
     } catch {
       setStatus("error");
-      setErrorMessage("Er is iets misgegaan. Mail ons direct op vincent@vibo-it.be.");
+      setErrorMessage("Kan geen verbinding maken. Mail ons direct op vincent@vibo-it.be.");
     }
   }
 
