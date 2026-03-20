@@ -66,7 +66,7 @@ function Header() {
           <Link href="/diensten" className="text-sm text-muted hover:text-primary transition-colors">
             Diensten
           </Link>
-          <Link href="/#over-ons" className="text-sm text-muted hover:text-primary transition-colors">
+          <Link href="/over-ons" className="text-sm text-muted hover:text-primary transition-colors">
             Over Ons
           </Link>
           <Link href="/blog" className="text-sm text-muted hover:text-primary transition-colors">
@@ -105,7 +105,7 @@ function MobileMenu() {
           </svg>
         </label>
         <Link href="/diensten" className="text-lg text-muted hover:text-primary">Diensten</Link>
-        <Link href="/#over-ons" className="text-lg text-muted hover:text-primary">Over Ons</Link>
+        <Link href="/over-ons" className="text-lg text-muted hover:text-primary">Over Ons</Link>
         <Link href="/blog" className="text-lg text-muted hover:text-primary">Blog</Link>
         <Link href="/contact" className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light">
           Contact
@@ -132,7 +132,7 @@ function Footer() {
             <h4 className="font-semibold mb-4">Navigatie</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link href="/diensten" className="hover:text-white transition-colors">Diensten</Link></li>
-              <li><Link href="/#over-ons" className="hover:text-white transition-colors">Over Ons</Link></li>
+              <li><Link href="/over-ons" className="hover:text-white transition-colors">Over Ons</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
