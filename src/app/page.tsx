@@ -2,9 +2,19 @@ import Link from "next/link";
 
 const services = [
   {
-    title: "AI & Machine Learning",
+    title: "AI Readiness Assessment",
     description:
-      "Integratie van AI-oplossingen die uw bedrijfsprocessen automatiseren en optimaliseren. Van chatbots tot predictive analytics.",
+      "Wij analyseren uw huidige IT-landschap en bedrijfsprocessen om te bepalen waar AI de meeste impact kan maken. U krijgt een concreet actieplan met prioriteiten en ROI-schatting.",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Custom AI Development",
+    description:
+      "Op maat gemaakte AI-oplossingen voor uw bedrijf. Van intelligente chatbots en documentverwerking tot predictive analytics en procesautomatisering.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
@@ -12,9 +22,9 @@ const services = [
     ),
   },
   {
-    title: "Software Development",
+    title: "Architectuur Review",
     description:
-      "Op maat gemaakte software oplossingen. Full-stack development met moderne technologieën zoals React, Node.js en cloud-native architecturen.",
+      "Een grondige doorlichting van uw bestaande IT-architectuur. Wij identificeren bottlenecks, security risico's en optimalisatiemogelijkheden voor schaalbaarheid.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
@@ -22,25 +32,21 @@ const services = [
     ),
   },
   {
-    title: "Cloud & Infrastructure",
+    title: "Managed AI Support",
     description:
-      "Cloud migratie en beheer op AWS, Azure en GCP. Wij ontwerpen schaalbare, veilige en kostenefficiënte infrastructuur.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Digitale Transformatie",
-    description:
-      "Strategisch advies en begeleiding bij uw digitale transformatie. Van procesoptimalisatie tot complete bedrijfsvernieuwing.",
+      "Doorlopende ondersteuning en optimalisatie van uw AI-systemen. Monitoring, updates, en continue verbetering zodat uw AI-investeringen rendabel blijven.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     ),
   },
+];
+
+const trustItems = [
+  { stat: "KBO 0662.548.503", label: "Geregistreerd in België" },
+  { stat: "AI-First", label: "Aanpak sinds dag 1" },
+  { stat: "KMO Focus", label: "Belgische bedrijven" },
 ];
 
 export default function HomePage() {
@@ -60,15 +66,15 @@ export default function HomePage() {
               <span className="text-accent">IT Consultancy</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-gray-300 leading-relaxed animate-fade-in-up animate-delay-200">
-              Wij helpen bedrijven hun digitale ambities waar te maken met
-              slimme technologie, bewezen expertise en een persoonlijke aanpak.
+              Wij helpen Belgische KMO&apos;s hun bedrijfsprocessen te transformeren
+              met slimme AI-oplossingen, bewezen expertise en een persoonlijke aanpak.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-300">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center bg-accent text-dark font-semibold px-8 py-3 rounded-lg hover:bg-accent-light transition-colors"
               >
-                Neem contact op
+                Gratis AI Readiness Check
               </Link>
               <Link
                 href="/#diensten"
@@ -81,6 +87,20 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Social Proof / Trust */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {trustItems.map((item) => (
+              <div key={item.label}>
+                <div className="text-2xl font-bold text-primary">{item.stat}</div>
+                <div className="text-sm text-muted mt-1">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Diensten */}
       <section id="diensten" className="py-20 sm:py-28 bg-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,8 +109,8 @@ export default function HomePage() {
               Onze Diensten
             </h2>
             <p className="mt-4 text-muted text-lg">
-              Van strategie tot implementatie — wij bieden end-to-end IT
-              consultancy diensten.
+              Van AI-strategie tot implementatie en doorlopend beheer — wij bieden
+              end-to-end AI consultancy voor Belgische KMO&apos;s.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -123,16 +143,15 @@ export default function HomePage() {
                 Over VIBO IT Consulting
               </h2>
               <p className="mt-6 text-muted text-lg leading-relaxed">
-                VIBO IT Consulting is een AI-gedreven IT consultancy bureau
-                gevestigd in Nederland. Wij combineren diepgaande technische
-                expertise met strategisch inzicht om bedrijven te helpen bij
-                hun digitale transformatie.
+                VIBO IT Consulting BV is een AI-gedreven IT consultancy bureau
+                gevestigd in België. Onder leiding van Vincent Bouillart
+                combineren wij diepgaande technische expertise met strategisch
+                inzicht om KMO&apos;s te helpen bij hun digitale transformatie.
               </p>
               <p className="mt-4 text-muted leading-relaxed">
-                Ons team van ervaren consultants en engineers werkt nauw samen
-                met uw organisatie om op maat gemaakte oplossingen te
-                ontwikkelen die écht impact maken. Van AI-integratie tot
-                cloud-migratie, wij staan klaar.
+                Wij geloven dat AI niet voorbehouden is aan grote multinationals.
+                Daarom maken wij slimme technologie toegankelijk voor Belgische
+                bedrijven — met oplossingen die passen bij uw schaal en budget.
               </p>
               <div className="mt-8 grid grid-cols-3 gap-6">
                 <div>
@@ -140,8 +159,8 @@ export default function HomePage() {
                   <div className="text-sm text-muted mt-1">Jaar Ervaring</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-accent">50+</div>
-                  <div className="text-sm text-muted mt-1">Projecten</div>
+                  <div className="text-3xl font-bold text-accent">AI-First</div>
+                  <div className="text-sm text-muted mt-1">Aanpak</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-accent">100%</div>
@@ -154,8 +173,8 @@ export default function HomePage() {
               <ul className="space-y-4">
                 {[
                   "Persoonlijke aanpak en korte lijnen",
-                  "Bewezen track record in AI & cloud",
-                  "Nederlandse marktkennis",
+                  "Bewezen expertise in AI & cloud",
+                  "Focus op Belgische KMO's",
                   "Flexibele samenwerking op maat",
                   "Continue ondersteuning na oplevering",
                 ].map((item) => (
@@ -176,10 +195,10 @@ export default function HomePage() {
       <section className="py-20 bg-accent/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-            Klaar om te beginnen?
+            Klaar om AI in te zetten voor uw bedrijf?
           </h2>
           <p className="mt-4 text-lg text-muted">
-            Laat ons weten hoe wij u kunnen helpen. Wij reageren binnen 24 uur.
+            Plan een gratis kennismakingsgesprek. Wij reageren binnen 24 uur.
           </p>
           <Link
             href="/contact"
