@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = "https://vibo-it.nl";
+export const dynamic = "force-static";
+
+const BASE_URL = "https://vibo-it.be";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();

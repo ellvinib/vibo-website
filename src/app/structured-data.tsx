@@ -3,17 +3,17 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "VIBO IT Consulting BV",
-    url: "https://vibo-it.nl",
+    url: "https://vibo-it.be",
     description:
       "AI-gedreven IT consultancy diensten. Software development, cloud oplossingen en digitale transformatie.",
     address: {
       "@type": "PostalAddress",
-      addressCountry: "NL",
+      addressCountry: "BE",
     },
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "info@vibo-it.nl",
+      email: "info@vibo-it.be",
       contactType: "customer service",
       availableLanguage: ["Dutch", "English"],
     },
@@ -33,7 +33,7 @@ export function WebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "VIBO IT Consulting",
-    url: "https://vibo-it.nl",
+    url: "https://vibo-it.be",
     description: "AI-gedreven IT consultancy diensten",
     publisher: {
       "@type": "Organization",

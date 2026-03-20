@@ -21,18 +21,21 @@ export function ContactForm() {
       message: formData.get("message") as string,
     };
 
+    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+    const endpoint = formspreeId
+      ? `https://formspree.io/f/${formspreeId}`
+      : "https://formspree.io/f/YOUR_FORM_ID";
+
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage(result.error || "Er is iets misgegaan.");
+        setErrorMessage("Er is iets misgegaan bij het verzenden.");
         return;
       }
 

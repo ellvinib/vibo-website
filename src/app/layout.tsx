@@ -140,8 +140,8 @@ function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>info@vibo-it.nl</li>
-              <li>Nederland</li>
+              <li>info@vibo-it.be</li>
+              <li>België</li>
             </ul>
           </div>
         </div>
